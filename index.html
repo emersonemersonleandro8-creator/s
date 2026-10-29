@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Você 💜</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-align: center;
+  background: linear-gradient(135deg, #10051f, #351052, #7027a0);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header { padding: 65px 20px 35px; }
+
+h1 {
+  font-size: clamp(2.2rem, 8vw, 3.8rem);
+  color: #edcaff;
+  text-shadow: 0 0 25px #c084fc;
+}
+
+header p { font-size: 1.1rem; color: #ead8ff; }
+
+main {
+  width: min(90%, 700px);
+  margin: auto;
+  padding-bottom: 40px;
+}
+
+.card {
+  background: rgba(255,255,255,.09);
+  border: 1px solid rgba(230,200,255,.25);
+  padding: 25px;
+  border-radius: 22px;
+  margin: 20px 0;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 30px #0b031855;
+}
+
+h2 { color: #e6c2ff; }
+
+.mensagem {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  min-height: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  background: linear-gradient(90deg, #b56aff, #e0aaff);
+  color: #26083e;
+  border: none;
+  border-radius: 30px;
+  padding: 13px 23px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 7px;
+  transition: transform .2s;
+}
+
+button:hover { transform: scale(1.05); }
+
+#surpresa {
+  display: none;
+  line-height: 1.9;
+  color: #f3e6ff;
+}
+
+footer { padding: 25px; color: #d9b9f4; }
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  animation: subir 6s linear forwards;
+  z-index: -1;
+}
+
+@keyframes subir {
+  to { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="font-size:45px">💜 ✨ 💜</div>
+  <h1>Para Você</h1>
+  <p>Um pequeno cantinho feito especialmente para você...</p>
+  <p>🌙💜🌷</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>Uma coisinha que quero te dizer 💌</h2>
+    <p class="mensagem">
+      Entre tantas pessoas no mundo, você conseguiu
+      despertar algo especial em mim.
+    </p>
+    <button onclick="novaMensagem()">Outra mensagem 💜</button>
+  </section>
+
+  <section class="card">
+    <h2>Seus pequenos detalhes ✨</h2>
+    <p>Seu sorriso ilumina meus dias.</p>
+    <p>Seu jeito tem algo que me encanta.</p>
+    <p>Conversar com você deixa tudo mais bonito.</p>
+    <p>E até as coisas simples ficam especiais quando penso em você. 💜</p>
+  </section>
+
+  <section class="card">
+    <h2>Abra quando quiser sorrir 🥹</h2>
+    <p>Preparei uma surpresa para você...</p>
+    <button onclick="mostrarSurpresa()">Clique aqui 💌</button>
+    <div id="surpresa">
+      <p>
+        Talvez eu não saiba dizer tudo perfeitamente,
+        mas sei que você é alguém que eu gostaria de conhecer
+        cada vez mais.
+      </p>
+      <p>
+        Não quero apressar nada, só queria que você soubesse
+        que existe alguém aqui que sorri só de pensar em você. 💜
+      </p>
+      <div style="font-size:35px">🫶🏻💜✨</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Uma última coisinha 🌷</h2>
+    <p>
+      Se este site conseguiu arrancar um sorrisinho seu,
+      então já valeu a pena ter feito tudo isso.
+    </p>
+    <p style="font-size:25px">💜 ♡ 💜</p>
+  </section>
+</main>
+
+<footer>
+  Feito com carinho, pensando em você. 💜
+</footer>
+
+<script>
+const mensagens = [
+  "Seu sorriso tem um jeito especial de melhorar meu dia. 💜",
+  "Seus olhos parecem guardar um universo inteiro de beleza. ✨",
+  "Não sei explicar direito, só sei que gosto de falar com você. 🥹",
+  "Se eu pudesse te desejar algo, seria um milhão de motivos para sorrir. 🌷",
+  "Você deixa meus pensamentos mais bonitos sem nem perceber. 💌",
+  "Entre tantas coisas bonitas, conhecer você seria uma das minhas favoritas. 💜",
+  "Queria poder te dar um abraço agora e fazer seu dia melhor. 🫶🏻",
+  "Você merece um amor leve, sincero e cheio de respeito. 💜"
+];
+
+let ultima = -1;
+
+function novaMensagem() {
+  let n;
+  do {
+    n = Math.floor(Math.random() * mensagens.length);
+  } while (n === ultima && mensagens.length > 1);
+
+  ultima = n;
+  document.querySelector(".mensagem").textContent = mensagens[n];
+}
+
+function mostrarSurpresa() {
+  const s = document.getElementById("surpresa");
+  s.style.display = "block";
+}
+
+function criarCoracao() {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.textContent = ["💜", "♡", "✨", "💜"][
+    Math.floor(Math.random() * 4)
+  ];
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.fontSize = (15 + Math.random() * 20) + "px";
+  h.style.animationDuration = (4 + Math.random() * 4) + "s";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 8000);
+}
+
+setInterval(criarCoracao, 650);
+</script>
+
+</body>
+</html>
